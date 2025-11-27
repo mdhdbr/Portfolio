@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Presentations - Mohamed Hameed Buhari</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --primary-color: #3a86ff;
+            --secondary-color: #8338ec;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --card-hover: #252525;
+            --gradient: linear-gradient(135deg, #3a86ff 0%, #8338ec 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--surface-color);
+            color: var(--text-primary);
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(58, 134, 255, 0.2);
+        }
+
+        .back-button:hover {
+            background: var(--primary-color);
+            transform: translateX(-5px);
+            box-shadow: 0 8px 24px rgba(58, 134, 255, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 300px;
+            background: var(--gradient);
+            opacity: 0.1;
+            filter: blur(100px);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
+        }
+
+        /* 3D Cube Loader */
+        .cube-container {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            perspective: 1000px;
+        }
+
+        .cube-container.top-left {
+            top: 100px;
+            left: 10%;
+        }
+
+        .cube-container.top-right {
+            top: 100px;
+            right: 10%;
+        }
+
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 10s infinite linear;
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            opacity: 0.6;
+            border: 2px solid var(--primary-color);
+        }
+
+        .cube-face.front {
+            transform: translateZ(30px);
+        }
+
+        .cube-face.back {
+            transform: rotateY(180deg) translateZ(30px);
+        }
+
+        .cube-face.right {
+            transform: rotateY(90deg) translateZ(30px);
+        }
+
+        .cube-face.left {
+            transform: rotateY(-90deg) translateZ(30px);
+        }
+
+        .cube-face.top {
+            transform: rotateX(90deg) translateZ(30px);
+        }
+
+        .cube-face.bottom {
+            transform: rotateX(-90deg) translateZ(30px);
+        }
+
+        @keyframes rotateCube {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+
+            100% {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+        /* Presentations Grid */
+        .presentations-section {
+            padding: 40px 20px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .presentations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* Presentation Card */
+        .presentation-card {
+            background: var(--surface-color);
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(58, 134, 255, 0.1);
+            position: relative;
+        }
+
+        .presentation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .presentation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(58, 134, 255, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .presentation-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-thumbnail {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-thumbnail-icon {
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.9);
+            z-index: 2;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .presentation-card:hover .card-thumbnail-icon {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 20px rgba(58, 134, 255, 0.6));
+        }
+
+        .card-content {
+            padding: 24px;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 1.5rem;
+        }
+
+        .card-content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            width: 90%;
+            height: 90%;
+            max-width: 1200px;
+            background: var(--surface-color);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(58, 134, 255, 0.3);
+            animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .modal-close:hover {
+            background: var(--secondary-color);
+            transform: rotate(90deg);
+        }
+
+        .modal-embed {
+            width: 100%;
+            height: 100%;
+        }
+
+        .modal-embed iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(58, 134, 255, 0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .presentations-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .cube-container {
+                display: none;
+            }
+
+            .back-button {
+                top: 10px;
+                left: 10px;
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- BACK BUTTON -->
+    <a href="index.html" class="back-button">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+    </a>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <!-- 3D Cubes -->
+        <div class="cube-container top-left">
+            <div class="cube">
+                <div class="cube-face front"></div>
+                <div class="cube-face back"></div>
+                <div class="cube-face right"></div>
+                <div class="cube-face left"></div>
+                <div class="cube-face top"></div>
+                <div class="cube-face bottom"></div>
+            </div>
+        </div>
+        <div class="cube-container top-right">
+            <div class="cube">
+                <div class="cube-face front"></div>
+                <div class="cube-face back"></div>
+                <div class="cube-face right"></div>
+                <div class="cube-face left"></div>
+                <div class="cube-face top"></div>
+                <div class="cube-face bottom"></div>
+            </div>
+        </div>
+
+        <div class="hero-content">
+            <h1>Professional Presentations</h1>
+            <p>Explore comprehensive fleet management showcases and strategic initiatives</p>
+        </div>
+    </section>
+
+    <!-- PRESENTATIONS SECTION -->
+    <section class="presentations-section">
+        <div class="presentations-grid">
+
+            <!-- 1. CAPEX & OPEX -->
+            <div class="presentation-card"
+                data-link="https://docs.google.com/presentation/d/1puxWwe73vEZBderAuxUEF-i37MDouXPX/preview"
+                onclick="openModal(this)">
+                <div class="card-thumbnail"
+                    style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #d4af37 100%);">
+                    <i class="fa-solid fa-chart-pie card-thumbnail-icon"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <h3>CAPEX & OPEX</h3>
+                    <p>Capital and operational expenditure management strategies for fleet optimization</p>
+                    <div class="card-meta">
+                        <span><i class="fa-solid fa-calendar"></i> 2024</span>
+                        <span><i class="fa-solid fa-layer-group"></i> Finance</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Fleet Procurement Process -->
+            <div class="presentation-card"
+                data-link="https://docs.google.com/presentation/d/1PPDv0oQKt7Kwz_4xkflrAbrnhTzkyqYs/preview"
+                onclick="openModal(this)">
+                <div class="card-thumbnail" style="background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);">
+                    <i class="fa-solid fa-clipboard-check card-thumbnail-icon"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+                    <h3>Comprehensive Fleet Procurement Process</h3>
+                    <p>End-to-end procurement workflow from vendor selection to fleet acquisition</p>
+                    <div class="card-meta">
+                        <span><i class="fa-solid fa-calendar"></i> 2024</span>
+                        <span><i class="fa-solid fa-layer-group"></i> Procurement</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Supply Chain Journey -->
+            <div class="presentation-card"
+                data-link="https://docs.google.com/presentation/d/1GFGZtTo-3Ry9RKjqUcFi4GtINreS4KQI/preview"
+                onclick="openModal(this)">
+                <div class="card-thumbnail" style="background: linear-gradient(135deg, #f2709c 0%, #ff9472 100%);">
+                    <i class="fa-solid fa-route card-thumbnail-icon"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-route"></i>
+                    </div>
+                    <h3>The Complete Supply Chain Journey</h3>
+                    <p>Comprehensive logistics network and supply chain optimization strategies</p>
+                    <div class="card-meta">
+                        <span><i class="fa-solid fa-calendar"></i> 2024</span>
+                        <span><i class="fa-solid fa-layer-group"></i> Supply Chain</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Supply Chain in Fleet Ops -->
+            <div class="presentation-card"
+                data-link="https://docs.google.com/presentation/d/1v6bxaNg7SqXm6HhbKiTbhymoq-TnIxPN/preview"
+                onclick="openModal(this)">
+                <div class="card-thumbnail" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+                    <i class="fa-solid fa-truck-moving card-thumbnail-icon"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-truck-moving"></i>
+                    </div>
+                    <h3>Supply Chain Management in Fleet Operations</h3>
+                    <p>Integrated supply chain coordination for efficient fleet operations</p>
+                    <div class="card-meta">
+                        <span><i class="fa-solid fa-calendar"></i> 2024</span>
+                        <span><i class="fa-solid fa-layer-group"></i> Operations</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Fleet and Transport Management -->
+            <div class="presentation-card"
+                data-link="https://docs.google.com/presentation/d/1mOaRA2PgcZpVsqkEQ1QsjJq_4kugrbok/preview"
+                onclick="openModal(this)">
+                <div class="card-thumbnail" style="background: linear-gradient(135deg, #c31432 0%, #240b36 100%);">
+                    <i class="fa-solid fa-truck-fast card-thumbnail-icon"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <h3>Comprehensive Fleet and Transport Management</h3>
+                    <p>Complete transport operations and fleet coordination strategies</p>
+                    <div class="card-meta">
+                        <span><i class="fa-solid fa-calendar"></i> 2024</span>
+                        <span><i class="fa-solid fa-layer-group"></i> Transport</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Heavy Movement Company -->
+            <div class="presentation-card"
+                data-link="https://docs.google.com/presentation/d/1HXqO3RmPHgi6kfn8jhRefmQlqgwsvVQs/preview"
+                onclick="openModal(this)">
+                <div class="card-thumbnail" style="background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);">
+                    <i class="fa-solid fa-truck-monster card-thumbnail-icon"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-truck-monster"></i>
+                    </div>
+                    <h3>Fleet Management at Heavy Movement Company</h3>
+                    <p>Specialized heavy equipment and vehicle fleet management practices</p>
+                    <div class="card-meta">
+                        <span><i class="fa-solid fa-calendar"></i> 2024</span>
+                        <span><i class="fa-solid fa-layer-group"></i> Heavy Fleet</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Vehicle Inspector -->
+            <div class="presentation-card"
+                data-link="https://docs.google.com/presentation/d/1qrzUAdqXB1p66GNjq3YlHpj5N-MzNBEa/preview"
+                onclick="openModal(this)">
+                <div class="card-thumbnail" style="background: linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%);">
+                    <i class="fa-solid fa-magnifying-glass card-thumbnail-icon"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <h3>Vehicle and Equipment Inspector</h3>
+                    <p>Quality assurance and inspection protocols for fleet safety compliance</p>
+                    <div class="card-meta">
+                        <span><i class="fa-solid fa-calendar"></i> 2024</span>
+                        <span><i class="fa-solid fa-layer-group"></i> Quality</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Core Concepts -->
+            <div class="presentation-card"
+                data-link="https://docs.google.com/presentation/d/1OUeBh_zWey6gNpgpixFTXQvVR8HjeuXK/preview"
+                onclick="openModal(this)">
+                <div class="card-thumbnail" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <i class="fa-solid fa-book-open card-thumbnail-icon"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <h3>Comprehensive Core Concept in Fleet and Transport</h3>
+                    <p>Fundamental principles and best practices in fleet and transport management</p>
+                    <div class="card-meta">
+                        <span><i class="fa-solid fa-calendar"></i> 2024</span>
+                        <span><i class="fa-solid fa-layer-group"></i> Fundamentals</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. Electric Vehicles -->
+            <div class="presentation-card"
+                data-link="https://docs.google.com/presentation/d/1vKNkEhpUoU7AU_aj-br2F5V1VF-kcX7H/preview"
+                onclick="openModal(this)">
+                <div class="card-thumbnail" style="background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);">
+                    <i class="fa-solid fa-charging-station card-thumbnail-icon"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-charging-station"></i>
+                    </div>
+                    <h3>Electric Vehicles (EV)</h3>
+                    <p>Electric vehicle integration and sustainable fleet transformation strategies</p>
+                    <div class="card-meta">
+                        <span><i class="fa-solid fa-calendar"></i> 2024</span>
+                        <span><i class="fa-solid fa-layer-group"></i> Sustainability</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. Fleet Ops Documents -->
+            <div class="presentation-card"
+                data-link="https://docs.google.com/presentation/d/1R8t3--5pmkStFv9xpb95TLCO0yC0xqkc/preview"
+                onclick="openModal(this)">
+                <div class="card-thumbnail" style="background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);">
+                    <i class="fa-solid fa-file-lines card-thumbnail-icon"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </div>
+                    <h3>Fleet Ops Documents</h3>
+                    <p>Essential documentation and operational procedures for fleet management</p>
+                    <div class="card-meta">
+                        <span><i class="fa-solid fa-calendar"></i> 2024</span>
+                        <span><i class="fa-solid fa-layer-group"></i> Documentation</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11. Warehouse Management -->
+            <div class="presentation-card"
+                data-link="https://docs.google.com/presentation/d/1nmOVxYdzVoVLZpXYV9PXK9r2LSTkHLct/preview"
+                onclick="openModal(this)">
+                <div class="card-thumbnail" style="background: linear-gradient(135deg, #ad5389 0%, #3c1053 100%);">
+                    <i class="fa-solid fa-warehouse card-thumbnail-icon"></i>
+                </div>
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-warehouse"></i>
+                    </div>
+                    <h3>Warehouse Management</h3>
+                    <p>Inventory control and warehouse operations optimization for fleet support</p>
+                    <div class="card-meta">
+                        <span><i class="fa-solid fa-calendar"></i> 2024</span>
+                        <span><i class="fa-solid fa-layer-group"></i> Logistics</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- MODAL -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modalEmbed" class="modal-embed"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© <span id="year"></span> Mohamed Hameed Buhari — All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Set year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Modal functions
+        function openModal(card) {
+            const link = card.getAttribute('data-link');
+            const modal = document.getElementById('modal');
+            const embed = document.getElementById('modalEmbed');
+
+            embed.innerHTML = `<iframe src="${link}" allowfullscreen></iframe>`;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            const embed = document.getElementById('modalEmbed');
+
+            modal.style.display = 'none';
+            embed.innerHTML = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on outside click
+        document.getElementById('modal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>

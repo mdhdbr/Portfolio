@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - Mohamed Hameed Buhari</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- BACK BUTTON -->
+    <a href="index.html" class="back-button">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+    </a>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">MHB</div>
+            <button id="navToggle" class="nav-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul id="mainNav" class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="about.html">About <i class="fa-solid fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="core_competencies.html">Core Competencies</a></li>
+                        <li><a href="star_swot.html">STAR & SWOT</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="operations.html">Operations <i class="fa-solid fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="stm.html">STM</a></li>
+                        <li><a href="cds_fdc.html">CDS - FDC</a></li>
+                        <li><a href="driver_roster.html">Driver Roster</a></li>
+                        <li><a href="driver_dashboard.html">Driver Dashboard</a></li>
+                    </ul>
+                </li>
+                <li><a href="presentation.html">Presentations</a></li>
+
+                <li><a href="safety.html">Safety</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- CONTENT SECTION -->
+    <section class="page-content">
+        <div class="content-container">
+            <h1 class="page-title">Get In Touch</h1>
+            <p class="page-description">Feel free to reach out for opportunities or collaborations.</p>
+
+            <div class="contact-info-grid">
+                <div class="contact-info-card">
+                    <i class="fa-solid fa-envelope"></i>
+                    <h3>Email</h3>
+                    <a href="mailto:mdhdbr@hotmail.com">mdhdbr@hotmail.com</a>
+                </div>
+
+                <div class="contact-info-card">
+                    <i class="fa-solid fa-phone"></i>
+                    <h3>Phone</h3>
+                    <a href="tel:+919941492528">+91 99414 92528</a>
+                </div>
+
+                <div class="contact-info-card">
+                    <i class="fa-brands fa-linkedin"></i>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/mohamed-b-55ab7957/" target="_blank">Connect on LinkedIn</a>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h2>Download Documents</h2>
+                <div class="document-links">
+                    <a href="https://drive.google.com/file/d/1SXCnE_sSlp4S3I3X-STI9Yp1cJ2caB2X/view" target="_blank"
+                        class="doc-link">
+                        <i class="fa-solid fa-file-pdf"></i> Resume
+                    </a>
+                    <a href="https://drive.google.com/file/d/1vi3fa9Ny7s2Fy84_rrMQw2HBAdjeczR0/view" target="_blank"
+                        class="doc-link">
+                        <i class="fa-solid fa-file-pdf"></i> Cover Letter
+                    </a>
+                    <a href="https://drive.google.com/file/d/1a8gyTvQA3NvRF2rtFGw_WE1GElcp4zop/view" target="_blank"
+                        class="doc-link">
+                        <i class="fa-solid fa-file-pdf"></i> ATS Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© <span id="yr"></span> Mohamed Hameed Buhari — All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById("yr").textContent = new Date().getFullYear();
+        const navToggle = document.getElementById("navToggle");
+        const nav = document.getElementById("mainNav");
+        navToggle.addEventListener("click", () => {
+            nav.classList.toggle("show");
+        });
+    </script>
+
+</body>
+
+</html>

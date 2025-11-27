@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - Mohamed Hameed Buhari</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* About Page Specific Styles */
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --primary-color: #3a86ff;
+            --secondary-color: #8338ec;
+            --text-primary: #ffffff;
+            --text-secondary: #b4b4c8;
+            --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .about-page {
+            background: var(--bg-color);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        /* Hero Section */
+        .about-hero {
+            text-align: center;
+            padding: 80px 30px 60px;
+            background: linear-gradient(135deg, rgba(58, 134, 255, 0.1) 0%, rgba(131, 56, 236, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(58, 134, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        /* KPI Stats */
+        .kpi-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .kpi-stat {
+            background: var(--surface-color);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 2px solid transparent;
+            background-image: linear-gradient(var(--surface-color), var(--surface-color)),
+                linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-stat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .kpi-stat:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(58, 134, 255, 0.3);
+        }
+
+        .kpi-stat:hover::before {
+            opacity: 0.1;
+        }
+
+        .kpi-stat i {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .kpi-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .kpi-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Main Content */
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 30px;
+        }
+
+        /* Expandable Section */
+        .expandable-section {
+            margin-bottom: 30px;
+            background: var(--surface-color);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(58, 134, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .expandable-section:hover {
+            border-color: rgba(58, 134, 255, 0.5);
+            box-shadow: 0 10px 40px rgba(58, 134, 255, 0.2);
+        }
+
+        .section-header {
+            padding: 30px 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, rgba(58, 134, 255, 0.05) 0%, rgba(131, 56, 236, 0.05) 100%);
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .section-header:hover {
+            background: linear-gradient(135deg, rgba(58, 134, 255, 0.1) 0%, rgba(131, 56, 236, 0.1) 100%);
+        }
+
+        .section-header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .section-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: transform 0.3s ease;
+        }
+
+        .section-header:hover .section-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .section-toggle {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .expandable-section.expanded .section-toggle {
+            transform: rotate(180deg);
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .expandable-section.expanded .section-content {
+            max-height: 5000px;
+        }
+
+        .section-inner {
+            padding: 40px;
+        }
+
+        /* Professional Summary */
+        .summary-box {
+            background: rgba(58, 134, 255, 0.05);
+            border-left: 4px solid var(--primary-color);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .summary-box p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .summary-box strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .key-strengths {
+            margin-top: 25px;
+        }
+
+        .key-strengths h3 {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .strengths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .strength-item {
+            background: var(--bg-color);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 3px solid var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .strength-item:hover {
+            transform: translateX(5px);
+            border-left-color: var(--primary-color);
+        }
+
+        .strength-item::before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-right: 10px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 6px rgba(58, 134, 255, 0.2);
+            z-index: 1;
+        }
+
+        .timeline-date {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            padding-top: 10px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-date {
+            text-align: right;
+            padding-right: 50px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-date {
+            order: 2;
+            text-align: left;
+            padding-left: 50px;
+        }
+
+        .timeline-card {
+            background: var(--bg-color);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(58, 134, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-card {
+            padding-left: 50px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-card {
+            order: 1;
+            text-align: right;
+            padding-right: 50px;
+        }
+
+        .timeline-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(58, 134, 255, 0.2);
+        }
+
+        .timeline-card h3 {
+            color: var(--text-primary);
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .timeline-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Expertise Cards */
+        .expertise-grid {
+            display: grid;
+            gap: 25px;
+        }
+
+        .expertise-card {
+            background: var(--bg-color);
+            padding: 35px;
+            border-radius: 15px;
+            border: 2px solid rgba(58, 134, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .expertise-card:hover {
+            border-color: var(--primary-color);
+            transform: translateX(8px);
+            box-shadow: 0 10px 40px rgba(58, 134, 255, 0.2);
+        }
+
+        .expertise-card h3 {
+            color: var(--text-primary);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+        }
+
+        .expertise-card h3 i {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.6rem;
+        }
+
+        .expertise-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .expertise-card ul li {
+            color: var(--text-secondary);
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .expertise-card ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-card {
+            background: var(--bg-color);
+            padding: 35px;
+            border-radius: 15px;
+            border: 2px solid rgba(58, 134, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: var(--secondary-color);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(131, 56, 236, 0.3);
+        }
+
+        .skill-card i {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .skill-card h3 {
+            color: var(--text-primary);
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .skill-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-card ul li {
+            color: var(--text-secondary);
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .skill-card ul li::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        /* Education Grid */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .education-card {
+            background: var(--bg-color);
+            padding: 35px;
+            border-radius: 15px;
+            border: 2px solid rgba(58, 134, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            border-color: var(--secondary-color);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(131, 56, 236, 0.3);
+        }
+
+        .education-card i {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .education-card h3 {
+            color: var(--text-primary);
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .education-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .education-card ul li {
+            color: var(--text-secondary);
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .education-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .education-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .kpi-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 0;
+                padding-left: 70px;
+            }
+
+            .timeline-item::before {
+                left: 30px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-date,
+            .timeline-item:nth-child(even) .timeline-date {
+                text-align: left;
+                padding: 0 0 15px 0;
+                order: 1;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-card,
+            .timeline-item:nth-child(even) .timeline-card {
+                text-align: left;
+                padding: 25px;
+                order: 2;
+            }
+
+            .section-header {
+                padding: 25px 20px;
+            }
+
+            .section-inner {
+                padding: 25px 20px;
+            }
+
+            .skills-grid,
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="about-page">
+
+    <!-- BACK BUTTON -->
+    <a href="index.html" class="back-button">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+    </a>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">MHB</div>
+            <button id="navToggle" class="nav-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul id="mainNav" class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="about.html">About <i class="fa-solid fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="core_competencies.html">Core Competencies</a></li>
+                        <li><a href="star_swot.html">STAR & SWOT</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="operations.html">Operations <i class="fa-solid fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="stm.html">STM</a></li>
+                        <li><a href="cds_fdc.html">CDS - FDC</a></li>
+                        <li><a href="driver_roster.html">Driver Roster</a></li>
+                        <li><a href="driver_dashboard.html">Driver Dashboard</a></li>
+                    </ul>
+                </li>
+                <li><a href="presentation.html">Presentations</a></li>
+
+                <li><a href="safety.html">Safety</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="about-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Mohamed Hameed Buhari</h1>
+            <p class="hero-subtitle">Strategic Operations Coordinator</p>
+            <p class="hero-description">
+                Cross-functional experience in aviation, oil & gas, logistics, and fleet coordination.
+                Transforming complex logistics into simple, efficient systems through digital innovation and
+                people-first leadership.
+            </p>
+        </div>
+
+        <!-- KPI Stats -->
+        <div class="kpi-stats">
+            <div class="kpi-stat">
+                <i class="fa-solid fa-calendar-check"></i>
+                <div class="kpi-number" data-target="15">0</div>
+                <div class="kpi-label">Years of Experience</div>
+            </div>
+            <div class="kpi-stat">
+                <i class="fa-solid fa-users"></i>
+                <div class="kpi-number" data-target="12000">0</div>
+                <div class="kpi-label">Employees Transported Daily</div>
+            </div>
+            <div class="kpi-stat">
+                <i class="fa-solid fa-route"></i>
+                <div class="kpi-number" data-target="660">0</div>
+                <div class="kpi-label">Daily Trips Managed</div>
+            </div>
+            <div class="kpi-stat">
+                <i class="fa-solid fa-plane"></i>
+                <div class="kpi-number" data-target="100">0</div>
+                <div class="kpi-label">Aviation Training Programs</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <div class="about-content">
+
+        <!-- Professional Summary Section -->
+        <div class="expandable-section expanded">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-header-left">
+                    <i class="fa-solid fa-user-tie section-icon"></i>
+                    <h2 class="section-title">Professional Summary</h2>
+                </div>
+                <i class="fa-solid fa-chevron-down section-toggle"></i>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <div class="summary-box">
+                        <p><strong>Professional Title:</strong> Strategic Operations Coordinator</p>
+                        <p><strong>Core Expertise:</strong> Cross-functional experience in aviation, oil & gas,
+                            logistics, and fleet coordination</p>
+
+                        <div class="key-strengths">
+                            <h3>Key Strengths</h3>
+                            <div class="strengths-grid">
+                                <div class="strength-item">Optimizing processes and leading digital transformation
+                                    initiatives</div>
+                                <div class="strength-item">Reducing manual workload by 30%</div>
+                                <div class="strength-item">People-first logistics, cost-control strategies, and
+                                    operational efficiency</div>
+                                <div class="strength-item">Transforming complex logistics into simple, efficient systems
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Experience Section -->
+        <div class="expandable-section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-header-left">
+                    <i class="fa-solid fa-briefcase section-icon"></i>
+                    <h2 class="section-title">Professional Experience</h2>
+                </div>
+                <i class="fa-solid fa-chevron-down section-toggle"></i>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2015 - 2022</div>
+                            <div class="timeline-card">
+                                <h3>Transport & Logistics, Operations Coordinator</h3>
+                                <p>Managed 24/7 staff landside transport, crew transport, airside buses, and overall
+                                    fleet and logistics for a leading global airline (EK).</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2014 - 2015</div>
+                            <div class="timeline-card">
+                                <h3>Logistics Supervisor</h3>
+                                <p>Oversaw transportation and logistics operations as a Spares and Yard Supervisor.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2013 - 2014</div>
+                            <div class="timeline-card">
+                                <h3>I.T Solutions</h3>
+                                <p>Installed time-management software, provided client training, and offered remote
+                                    support.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2011 - 2013</div>
+                            <div class="timeline-card">
+                                <h3>Facility Management for Vendor</h3>
+                                <p>Oversaw building maintenance, safety equipment, and electrical systems.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2010 - 2011</div>
+                            <div class="timeline-card">
+                                <h3>Sales Manager</h3>
+                                <p>Territory Sales Manager for Green Mobile, managing dealer networks.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2008 - 2009</div>
+                            <div class="timeline-card">
+                                <h3>Lift Technician</h3>
+                                <p>Installation, maintenance, and safety inspections of elevator systems.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2007 - 2008</div>
+                            <div class="timeline-card">
+                                <h3>Tele Marketing Executive</h3>
+                                <p>Outbound calls for Bell Canada's high-speed internet trial.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2004 - 2006</div>
+                            <div class="timeline-card">
+                                <h3>Customer Care Executive</h3>
+                                <p>Inbound call center support for prepaid telecom users.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Areas of Expertise Section -->
+        <div class="expandable-section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-header-left">
+                    <i class="fa-solid fa-star section-icon"></i>
+                    <h2 class="section-title">Areas of Professional Expertise</h2>
+                </div>
+                <i class="fa-solid fa-chevron-down section-toggle"></i>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <div class="expertise-grid">
+                        <div class="expertise-card">
+                            <h3><i class="fa-solid fa-warehouse"></i> Warehouse & Cargo Logistics (GTL)</h3>
+                            <ul>
+                                <li>Cargo clearance (seaside/airside)</li>
+                                <li>End-to-end transport and warehouse operations (inbound logistics, inventory control,
+                                    order fulfillment, reverse logistics)</li>
+                                <li>Documentation, compliance, and team inspections</li>
+                            </ul>
+                        </div>
+
+                        <div class="expertise-card">
+                            <h3><i class="fa-solid fa-truck"></i> Transport & Fleet Management</h3>
+                            <ul>
+                                <li>Managing a fleet of sedans, pickups, heavy trucks, and buses</li>
+                                <li>Permit & registration renewals</li>
+                                <li>Vehicle health and driver fatigue monitoring</li>
+                            </ul>
+                        </div>
+
+                        <div class="expertise-card">
+                            <h3><i class="fa-solid fa-bus"></i> Staff Transport Operations</h3>
+                            <ul>
+                                <li>Transporting 12,000+ employees daily</li>
+                                <li>Managing 660+ trips and 420+ bus stops across Dubai</li>
+                                <li>Scheduling, route optimization, and safety compliance</li>
+                            </ul>
+                        </div>
+
+                        <div class="expertise-card">
+                            <h3><i class="fa-solid fa-car"></i> Chauffeur Drive Services (CDS)</h3>
+                            <ul>
+                                <li>Management of luxury vehicle fleets (BMW, Mercedes, Maybach, Tesla)</li>
+                                <li>Passenger movement coordination (airports to hotels/residences)</li>
+                                <li>Digital tracking and job allocation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Skills Section -->
+        <div class="expandable-section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-header-left">
+                    <i class="fa-solid fa-laptop-code section-icon"></i>
+                    <h2 class="section-title">Technical & Software Skills</h2>
+                </div>
+                <i class="fa-solid fa-chevron-down section-toggle"></i>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <i class="fa-solid fa-desktop"></i>
+                            <h3>Primary Software</h3>
+                            <ul>
+                                <li>Echo by Magenta</li>
+                                <li>Nimbus-Wialon</li>
+                                <li>Zoho Analytics</li>
+                                <li>SharePoint</li>
+                                <li>Azure</li>
+                                <li>Coruson</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <i class="fa-solid fa-cogs"></i>
+                            <h3>Core Competencies</h3>
+                            <ul>
+                                <li>Route Optimization</li>
+                                <li>SOP Development</li>
+                                <li>Digital Transformation</li>
+                                <li>Process Automation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education Section -->
+        <div class="expandable-section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-header-left">
+                    <i class="fa-solid fa-graduation-cap section-icon"></i>
+                    <h2 class="section-title">Education, Certifications & Languages</h2>
+                </div>
+                <i class="fa-solid fa-chevron-down section-toggle"></i>
+            </div>
+            <div class="section-content">
+                <div class="section-inner">
+                    <div class="education-grid">
+                        <div class="education-card">
+                            <i class="fa-solid fa-certificate"></i>
+                            <h3>Education & Certifications</h3>
+                            <ul>
+                                <li>Diploma in Electrical & Electronics Engineering</li>
+                                <li>PHR Certification – HR/People Process</li>
+                                <li>Emotional Intelligence & Team Leadership Courses</li>
+                                <li>100+ Aviation Trainings – Emirates Group LMS</li>
+                                <li>Webpage Developer | Photoshop (Basic)</li>
+                            </ul>
+                        </div>
+
+                        <div class="education-card">
+                            <i class="fa-solid fa-language"></i>
+                            <h3>Languages</h3>
+                            <ul>
+                                <li>English (Fluent)</li>
+                                <li>Tamil (Fluent)</li>
+                                <li>Hindi (Fluent)</li>
+                                <li>Malayalam (Fluent)</li>
+                                <li>Arabic (Basic)</li>
+                            </ul>
+                        </div>
+
+                        <div class="education-card">
+                            <i class="fa-solid fa-id-card"></i>
+                            <h3>License</h3>
+                            <p>Valid Dubai Driving License (Light Vehicle + Heavy Bus), valid until 2027.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© <span id="yr"></span> Mohamed Hameed Buhari — All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Footer year
+        document.getElementById("yr").textContent = new Date().getFullYear();
+
+        // Navigation toggle
+        const navToggle = document.getElementById("navToggle");
+        const nav = document.getElementById("mainNav");
+        navToggle.addEventListener("click", () => {
+            nav.classList.toggle("show");
+        });
+
+        // Toggle expandable sections
+        function toggleSection(header) {
+            const section = header.parentElement;
+            section.classList.toggle('expanded');
+        }
+
+        // Animated counter for KPIs
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString() + (target >= 1000 ? '+' : '+');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString();
+                }
+            }, 16);
+        }
+
+        // Trigger counter animation on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                    entry.target.classList.add('animated');
+                    animateCounter(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all KPI numbers
+        document.querySelectorAll('.kpi-number').forEach(counter => {
+            observer.observe(counter);
+        });
+    </script>
+
+</body>
+
+</html>

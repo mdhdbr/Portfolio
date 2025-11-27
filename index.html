@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Mohamed Hameed Buhari – Transport & Fleet Operations</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Analytics - Replace YOUR_GA_TRACKING_ID with your actual ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_TRACKING_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'YOUR_GA_TRACKING_ID');
+    </script>
+
+    <style>
+        /* Professional Homepage Specific Styles */
+
+        /* Professional Summary Section */
+        .professional-summary {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 30px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .summary-content {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .summary-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #667eea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .summary-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .professional-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        /* Key Achievements Section */
+        .achievements-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 30px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #667eea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            animation: fadeInUp 0.8s ease 0.8s both;
+        }
+
+        .achievement-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.3);
+        }
+
+        .achievement-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .achievement-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .achievement-metric {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .achievement-title {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .achievement-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Core Expertise Section */
+        .expertise-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 30px;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            animation: fadeInUp 0.8s ease 1s both;
+        }
+
+        .expertise-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .expertise-card i {
+            font-size: 2.5rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .expertise-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .expertise-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            max-width: 800px;
+            margin: 80px auto 60px;
+            padding: 0 30px;
+            text-align: center;
+            animation: fadeInUp 0.8s ease 1.2s both;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 35px;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.8);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .summary-content {
+                padding: 30px 20px;
+            }
+
+            .summary-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .summary-content p {
+                font-size: 1rem;
+            }
+
+            .professional-stats {
+                gap: 25px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .section-header p {
+                font-size: 1rem;
+            }
+
+            .achievements-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .cta-section h2 {
+                font-size: 1.6rem;
+            }
+
+            .cta-section p {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .professional-summary,
+            .achievements-section,
+            .expertise-section,
+            .cta-section {
+                padding: 0 20px;
+            }
+
+            .achievement-card,
+            .expertise-card {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR (PRESERVED) -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">MHB</div>
+
+            <button id="navToggle" class="nav-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <ul id="mainNav" class="nav-links">
+                <li><a href="index.html">Home</a></li>
+
+                <li class="dropdown">
+                    <a href="about.html">About <i class="fa-solid fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="core_competencies.html">Core Competencies</a></li>
+                        <li><a href="star_swot.html">STAR & SWOT</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="operations.html">Operations <i class="fa-solid fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="stm.html">STM</a></li>
+                        <li><a href="cds_fdc.html">CDS - FDC</a></li>
+                        <li><a href="driver_roster.html">Driver Roster</a></li>
+                        <li><a href="driver_dashboard.html">Driver Dashboard</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="presentation.html">Presentations</a></li>
+
+                <li><a href="safety.html">Safety</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Mohamed Hameed Buhari</h1>
+            <p class="hero-subtitle">Transport Operations Specialist • Fleet Management Expert • ERP Integration Leader
+            </p>
+        </div>
+    </section>
+
+    <!-- PROFESSIONAL SUMMARY -->
+    <section class="professional-summary">
+        <div class="summary-content">
+            <h2>Driving Operational Excellence in Transport & Fleet Management</h2>
+            <p>
+                Seasoned transport operations professional with extensive experience in fleet management,
+                logistics optimization, and ERP system integration. Proven track record of reducing operational
+                costs, improving safety compliance, and implementing data-driven solutions for large-scale
+                transport operations.
+            </p>
+            <p>
+                Specialized in staff transport management (STM), driver roster optimization, and comprehensive
+                fleet control systems. Committed to leveraging technology and best practices to deliver
+                measurable results in complex operational environments.
+            </p>
+
+            <div class="professional-stats">
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Fleet Vehicles Managed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">25%</span>
+                    <span class="stat-label">Cost Reduction Achieved</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY ACHIEVEMENTS -->
+    <section class="achievements-section">
+        <div class="section-header">
+            <h2>Key Achievements</h2>
+            <p>Measurable impact across transport operations and fleet management</p>
+        </div>
+
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <div class="achievement-icon">
+                    <i class="fas fa-truck-moving"></i>
+                </div>
+                <div class="achievement-metric">150+</div>
+                <h3 class="achievement-title">Fleet Optimization</h3>
+                <p class="achievement-description">
+                    Successfully managed and optimized fleet operations for 150+ vehicles,
+                    improving utilization rates and reducing downtime by 30%.
+                </p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="achievement-metric">25%</div>
+                <h3 class="achievement-title">Cost Reduction</h3>
+                <p class="achievement-description">
+                    Implemented strategic initiatives that reduced operational costs by 25%
+                    through route optimization and fuel management programs.
+                </p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+                <div class="achievement-metric">98%</div>
+                <h3 class="achievement-title">Safety Compliance</h3>
+                <p class="achievement-description">
+                    Achieved 98% safety compliance rate through comprehensive driver training
+                    programs and rigorous safety protocol implementation.
+                </p>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">
+                    <i class="fas fa-gears"></i>
+                </div>
+                <div class="achievement-metric">5+</div>
+                <h3 class="achievement-title">ERP Integrations</h3>
+                <p class="achievement-description">
+                    Led successful integration of 5+ ERP systems for transport management,
+                    streamlining operations and improving data accuracy.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE EXPERTISE -->
+    <section class="expertise-section">
+        <div class="section-header">
+            <h2>Core Expertise</h2>
+            <p>Comprehensive capabilities in transport and fleet operations</p>
+        </div>
+
+        <div class="expertise-grid">
+            <div class="expertise-card">
+                <i class="fa-solid fa-truck-moving"></i>
+                <h3>Fleet Management</h3>
+                <p>
+                    End-to-end fleet operations including vehicle acquisition, maintenance scheduling,
+                    lifecycle management, and performance tracking for optimal efficiency.
+                </p>
+            </div>
+
+            <div class="expertise-card">
+                <i class="fa-solid fa-route"></i>
+                <h3>Route Optimization</h3>
+                <p>
+                    Advanced route planning and optimization using data analytics to reduce fuel
+                    consumption, minimize travel time, and improve service delivery.
+                </p>
+            </div>
+
+            <div class="expertise-card">
+                <i class="fa-solid fa-clipboard-check"></i>
+                <h3>Compliance & Safety</h3>
+                <p>
+                    Comprehensive safety management systems, regulatory compliance monitoring,
+                    and driver training programs to maintain highest safety standards.
+                </p>
+            </div>
+
+            <div class="expertise-card">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Data Analytics & Reporting</h3>
+                <p>
+                    Advanced reporting and analytics for operational insights, KPI tracking,
+                    and data-driven decision making to improve performance.
+                </p>
+            </div>
+
+            <div class="expertise-card">
+                <i class="fa-solid fa-gears"></i>
+                <h3>ERP System Integration</h3>
+                <p>
+                    Expert in integrating transport operations with enterprise systems including
+                    SAP, Oracle, and custom solutions for seamless workflows.
+                </p>
+            </div>
+
+            <div class="expertise-card">
+                <i class="fa-solid fa-users"></i>
+                <h3>Staff Transport Management</h3>
+                <p>
+                    Specialized in employee transport solutions including driver roster management,
+                    scheduling optimization, and service quality monitoring.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="cta-section">
+        <h2>Let's Work Together</h2>
+        <p>
+            Open to global opportunities in transport logistics and fleet leadership.
+            Ready to bring operational excellence and proven results to your organization.
+        </p>
+        <div class="cta-buttons">
+            <a href="contact.html" class="btn-primary">
+                <i class="fas fa-envelope"></i>
+                Get In Touch
+            </a>
+            <a href="operations.html" class="btn-secondary">
+                <i class="fas fa-briefcase"></i>
+                View My Work
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>
+            © <span id="yr"></span> Mohamed Hameed Buhari — All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        // Year
+        document.getElementById("yr").textContent = new Date().getFullYear();
+
+        // Navigation toggle
+        const navToggle = document.getElementById("navToggle");
+        const nav = document.getElementById("mainNav");
+        navToggle.addEventListener("click", () => {
+            nav.classList.toggle("show");
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDS/FDC TCC - Mohamed Hameed Buhari</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #4361ee;
+            --secondary-purple: #7209b7;
+            --accent-teal: #4cc9f0;
+            --accent-green: #06d6a0;
+            --accent-orange: #ff9e00;
+            --text-light: #f8f9fa;
+            --text-muted: #adb5bd;
+            --bg-dark: #0d1117;
+            --bg-card: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+            --font-primary: 'Inter', system-ui, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-primary);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(114, 9, 183, 0.15) 0%, transparent 20%);
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-teal));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-teal);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(13, 17, 23, 0.98);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            list-style: none;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            padding: 0;
+        }
+
+        .dropdown-menu a {
+            padding: 0.75rem 1.25rem;
+            display: block;
+            width: 100%;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(67, 97, 238, 0.2);
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(67, 97, 238, 0.2);
+            color: var(--primary-blue);
+            border: 1px solid rgba(67, 97, 238, 0.3);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: rgba(67, 97, 238, 0.3);
+            transform: translateX(-5px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-teal));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .section {
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 20px;
+            background: var(--bg-card);
+            border-radius: 15px;
+            box-shadow: var(--glass-shadow);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .section-header:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .section-header .icon {
+            width: 50px;
+            height: 50px;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            border-radius: 12px;
+            transition: transform 0.5s;
+        }
+
+        .section-header.active .icon {
+            transform: rotate(180deg);
+        }
+
+        .icon.control {
+            background: linear-gradient(135deg, #4CAF50, #06d6a0);
+            color: white;
+        }
+
+        .icon.fleet {
+            background: linear-gradient(135deg, #2196F3, #4361ee);
+            color: white;
+        }
+
+        .icon.tools {
+            background: linear-gradient(135deg, #FF9800, #ff9e00);
+            color: white;
+        }
+
+        .icon.learning {
+            background: linear-gradient(135deg, #9C27B0, #7209b7);
+            color: white;
+        }
+
+        .icon.planning {
+            background: linear-gradient(135deg, #4cc9f0, #2196F3);
+            color: white;
+        }
+
+        .icon.alerts {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            color: white;
+        }
+
+        .icon.trips {
+            background: linear-gradient(135deg, #ffd93d, #ff9e00);
+            color: white;
+        }
+
+        .icon.locations {
+            background: linear-gradient(135deg, #6c5ce7, #7209b7);
+            color: white;
+        }
+
+        .icon.passengers {
+            background: linear-gradient(135deg, #00b894, #06d6a0);
+            color: white;
+        }
+
+        .icon.contacts {
+            background: linear-gradient(135deg, #0984e3, #4361ee);
+            color: white;
+        }
+
+        .icon.summary {
+            background: linear-gradient(135deg, #fd79a8, #e84393);
+            color: white;
+        }
+
+        .section-header h2 {
+            font-size: 1.4rem;
+            color: var(--accent-teal);
+            font-weight: 700;
+        }
+
+        .section-content {
+            display: none;
+            padding: 25px;
+            background: var(--bg-card);
+            border-radius: 15px;
+            margin-top: 10px;
+            box-shadow: var(--glass-shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+
+        .section-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-content h3 {
+            color: var(--accent-teal);
+            margin: 20px 0 15px;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .section-content p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .section-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section-content li {
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .section-content li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .section-content li strong {
+            color: var(--accent-green);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        th {
+            background: rgba(67, 97, 238, 0.2);
+            color: var(--accent-teal);
+            font-weight: 700;
+        }
+
+        td {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-muted);
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(13, 17, 23, 0.98);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+                border-bottom: 1px solid var(--glass-border);
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.show {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                padding: 0.75rem 1.25rem;
+                display: block;
+            }
+
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                border: none;
+                padding-left: 1rem;
+                background: transparent;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .section-header {
+                padding: 15px;
+            }
+
+            .section-header .icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.4rem;
+                margin-right: 15px;
+            }
+
+            .section-header h2 {
+                font-size: 1.1rem;
+            }
+
+            th,
+            td {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">MHB</div>
+            <button id="navToggle" class="nav-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul id="mainNav" class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="about.html">About <i class="fa-solid fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="core_competencies.html">Core Competencies</a></li>
+                        <li><a href="star_swot.html">STAR & SWOT</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="operations.html">Operations <i class="fa-solid fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="stm.html">STM</a></li>
+                        <li><a href="cds_fdc.html">CDS - FDC</a></li>
+                        <li><a href="driver_roster.html">Driver Roster</a></li>
+                        <li><a href="driver_dashboard.html">Driver Dashboard</a></li>
+                    </ul>
+                </li>
+                <li><a href="presentation.html">Presentations</a></li>
+
+                <li><a href="safety.html">Safety</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <a href="operations.html" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Operations
+        </a>
+
+        <h1>CDS/FDC TCC Operation</h1>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="icon control"><i class="fas fa-tower-broadcast"></i></div>
+                <h2>Transport Control Centre (TCC) – Operational Overview & Learning Guide</h2>
+            </div>
+            <div class="section-content active">
+                <h3>Core Responsibilities</h3>
+                <p>TCC manages both Crew Transport (CTM) and Chauffeur Drive Services (CDS), including:</p>
+                <ul>
+                    <li>Geo-coding</li>
+                    <li>Vehicle tracking and monitoring</li>
+                    <li>Manual and automated job allocation</li>
+                    <li>Passenger (PAX) services for Cabin Crew, Pilots, VIPs</li>
+                </ul>
+                <h3>Transport Services Provided</h3>
+                <ul>
+                    <li>Crew Transport (Pilots, Cabin Crew)</li>
+                    <li>Chauffeur Drive Service (First, Business Class)</li>
+                    <li>Airport transfers for ABC Engineers (e.g., to/from DWC)</li>
+                    <li>Arabian Adventures & Other VIP Movements</li>
+                    <li><strong>Transfer Locations:</strong> Primarily at DXB, with extended coverage across UAE.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="icon fleet"><i class="fas fa-car-side"></i></div>
+                <h2>Service Providers & Vehicle Mapping</h2>
+            </div>
+            <div class="section-content">
+                <h3>Service Providers</h3>
+                <ul>
+                    <li>🍃 EU (Europcar) – Leaf icon</li>
+                    <li>🚗 TG (Transguard) – Car icon</li>
+                    <li>🚙 AV (AVIS) – Car/MPV icon</li>
+                    <li>👑 Airside IO (Internal Ops) – Crown icon</li>
+                </ul>
+                <h3>Vehicle Types & Uses</h3>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Vehicle</th>
+                            <th>Use</th>
+                        </tr>
+                        <tr>
+                            <td>Mercedes S-Class</td>
+                            <td>First Class</td>
+                        </tr>
+                        <tr>
+                            <td>BMW 520i</td>
+                            <td>Business Class / Pilots</td>
+                        </tr>
+                        <tr>
+                            <td>Mercedes V-Class</td>
+                            <td>Multi-passenger transfers</td>
+                        </tr>
+                        <tr>
+                            <td>BMW 750Li</td>
+                            <td>Premium/VIP transfers</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="icon tools"><i class="fas fa-desktop"></i></div>
+                <h2>Tools Used: Echo Application</h2>
+            </div>
+            <div class="section-content">
+                <p>A live dashboard used for:</p>
+                <ul>
+                    <li>Fleet tracking</li>
+                    <li>Booking management</li>
+                    <li>Route planning</li>
+                    <li>Service scheduling</li>
+                </ul>
+                <h3>Echo Tabs</h3>
+                <p>Fleet, Customers, Reference Data, Security, Tools, Bookings, Planning, Scheduling, Portals</p>
+                <h3>Fleet Monitoring Colors</h3>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Color</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr>
+                            <td>Yellow</td>
+                            <td>En route for pickup</td>
+                        </tr>
+                        <tr>
+                            <td>Green</td>
+                            <td>Passenger onboard (POB)</td>
+                        </tr>
+                        <tr>
+                            <td>White</td>
+                            <td>Idle/awaiting assignment</td>
+                        </tr>
+                        <tr>
+                            <td>Red</td>
+                            <td>Trip completed</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="icon learning"><i class="fas fa-graduation-cap"></i></div>
+                <h2>Echo Learning Guide (Beginners)</h2>
+            </div>
+            <div class="section-content">
+                <ul>
+                    <li><strong>Tracking Tab:</strong> Vehicle details (plate #, driver, service provider, territory)
+                    </li>
+                    <li><strong>Driver Shift Tab:</strong> Weekly shift allocation and work hours</li>
+                    <li><strong>Bookings Tab:</strong> Data from NCC, MARS, and manual bookings</li>
+                    <li><strong>Geo-coding:</strong> Assign accurate locations for pickups and drops; resolve unassigned
+                        or "on hold" jobs</li>
+                    <li><strong>Extras to Validate:</strong> Child seats, booster seats, E-gate access, WCHC
+                        (wheelchair), etc.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="icon planning"><i class="fas fa-route"></i></div>
+                <h2>Journey Planning & Allocation</h2>
+            </div>
+            <div class="section-content">
+                <p><strong>Hard Allocation:</strong> Adjustments made manually to avoid dead kilometers (KMs)</p>
+                <p><strong>PU (Pick-up) Validation Time:</strong> Contact passengers between 09:00–21:00 HRS</p>
+                <h3>Travel Time Guidelines</h3>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Location</th>
+                            <th>Service Class</th>
+                            <th>Time</th>
+                        </tr>
+                        <tr>
+                            <td>Dubai</td>
+                            <td>First Class</td>
+                            <td>2 hrs</td>
+                        </tr>
+                        <tr>
+                            <td>Dubai</td>
+                            <td>Business Class</td>
+                            <td>2.5 hrs</td>
+                        </tr>
+                        <tr>
+                            <td>Other Emirates</td>
+                            <td>Remote locations (e.g., UAQ, Fujairah)</td>
+                            <td>Up to 4 hrs</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="icon alerts"><i class="fas fa-bell"></i></div>
+                <h2>Alerts & Monitoring</h2>
+            </div>
+            <div class="section-content">
+                <ul>
+                    <li>15-min buffer time for PAX delays</li>
+                    <li>Real-time tracking of job status</li>
+                </ul>
+                <h3>Error Codes</h3>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Code</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>FX</td>
+                            <td>Flight confirmation failed</td>
+                        </tr>
+                        <tr>
+                            <td>P</td>
+                            <td>Pickup delay</td>
+                        </tr>
+                        <tr>
+                            <td>D</td>
+                            <td>Drop-off issue</td>
+                        </tr>
+                        <tr>
+                            <td>L</td>
+                            <td>Call required for update</td>
+                        </tr>
+                        <tr>
+                            <td>C</td>
+                            <td>Driver follow-up required</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="icon trips"><i class="fas fa-layer-group"></i></div>
+                <h2>Clubbing Trips & Job Management</h2>
+            </div>
+            <div class="section-content">
+                <ul>
+                    <li>Combine trips using Echo's Scheduling Tools for efficiency</li>
+                    <li>Use "Add Job" option with job numbers for bundling trips</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="icon locations"><i class="fas fa-map-marked-alt"></i></div>
+                <h2>Key Locations (Airside / Concourse Reference)</h2>
+            </div>
+            <div class="section-content">
+                <p>Concourse A-D, Terminal 2, ABCFC, Flower Centre, Charlie Bay, ABC Engineering</p>
+                <p>Identified with gates and zones for transfer mapping and ETA planning</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="icon passengers"><i class="fas fa-users"></i></div>
+                <h2>Special Passenger Categories</h2>
+            </div>
+            <div class="section-content">
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Code</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>MISCON</td>
+                            <td>Error or failure resulting in compensation</td>
+                        </tr>
+                        <tr>
+                            <td>OBDC</td>
+                            <td>On-board denied boarding – provided alternate chauffeur service</td>
+                        </tr>
+                        <tr>
+                            <td>STPC</td>
+                            <td>Transit passengers eligible for hotel stay</td>
+                        </tr>
+                        <tr>
+                            <td>WCHC</td>
+                            <td>Wheelchair-required passengers</td>
+                        </tr>
+                        <tr>
+                            <td>SMT</td>
+                            <td>Senior Management Travel</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="icon contacts"><i class="fas fa-phone-volume"></i></div>
+                <h2>Key Contacts During Disruptions</h2>
+            </div>
+            <div class="section-content">
+                <ul>
+                    <li>Fleet Duty Manager</li>
+                    <li>Cabin Crew Duty Manager</li>
+                    <li>TCC Operations Team</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="icon summary"><i class="fas fa-clipboard-check"></i></div>
+                <h2>Summary</h2>
+            </div>
+            <div class="section-content">
+                <p>The TCC operates as the nerve center for crew and premium guest transport logistics at Emirates. The
+                    Echo system is the main operational tool for real-time control, planning, and coordination,
+                    integrating data from internal systems and service providers to deliver smooth ground transport
+                    experiences.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>© <span id="yr"></span> Mohamed Hameed Buhari | All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Set current year
+        document.getElementById("yr").textContent = new Date().getFullYear();
+
+        // Mobile navigation toggle
+        const navToggle = document.getElementById("navToggle");
+        const nav = document.getElementById("mainNav");
+        navToggle.addEventListener("click", () => {
+            nav.classList.toggle("show");
+        });
+
+        // Toggle section content visibility
+        function toggleSection(header) {
+            const section = header.parentElement;
+            const content = section.querySelector('.section-content');
+
+            // Toggle active class
+            header.classList.toggle('active');
+            content.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>

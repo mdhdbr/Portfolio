@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operations - Mohamed Hameed Buhari</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #4361ee;
+            --secondary-purple: #7209b7;
+            --accent-teal: #4cc9f0;
+            --accent-green: #06d6a0;
+            --text-light: #f8f9fa;
+            --text-muted: #adb5bd;
+            --bg-dark: #0d1117;
+            --bg-card: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+            --font-primary: 'Inter', system-ui, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-primary);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(67, 97, 238, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(114, 9, 183, 0.15) 0%, transparent 20%);
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-teal));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-teal);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(13, 17, 23, 0.98);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            list-style: none;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            padding: 0;
+        }
+
+        .dropdown-menu a {
+            padding: 0.75rem 1.25rem;
+            display: block;
+            width: 100%;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(67, 97, 238, 0.2);
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(67, 97, 238, 0.2);
+            color: var(--primary-blue);
+            border: 1px solid rgba(67, 97, 238, 0.3);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: rgba(67, 97, 238, 0.3);
+            transform: translateX(-5px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        header.page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-teal));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-green);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .page-name {
+            font-size: 1.5rem;
+            color: var(--accent-teal);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .page-intro {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Section Cards */
+        .section-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .section-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            animation: cardEntrance 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes cardEntrance {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .section-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-teal);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        .section-title:hover {
+            color: var(--primary-blue);
+        }
+
+        .section-title::before {
+            content: '▶';
+            margin-right: 10px;
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .section-card.active .section-title::before {
+            transform: rotate(90deg);
+        }
+
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .section-card.active .section-content {
+            max-height: 3000px;
+            opacity: 1;
+        }
+
+        .section-content p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        .highlight {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        .question {
+            color: var(--accent-teal);
+            font-style: italic;
+            margin: 20px 0 15px;
+            display: block;
+            border-left: 3px solid var(--accent-teal);
+            padding-left: 15px;
+            font-weight: 500;
+        }
+
+        .answer {
+            background: rgba(67, 97, 238, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-blue);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .answer::before {
+            content: 'Answer:';
+            display: block;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Tools Grid */
+        .tools-section {
+            margin-top: 25px;
+        }
+
+        .tools-section h3 {
+            color: var(--accent-teal);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .tool-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .tool-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .tool-title {
+            color: var(--accent-green);
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+
+        .tool-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Methodology Items */
+        .methodology-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary-purple);
+            transition: all 0.3s ease;
+        }
+
+        .methodology-item:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .methodology-title {
+            color: var(--accent-teal);
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .methodology-title::before {
+            content: '▣';
+            margin-right: 10px;
+            color: var(--secondary-purple);
+        }
+
+        .methodology-point {
+            margin-left: 20px;
+            margin-bottom: 10px;
+            position: relative;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .methodology-point::before {
+            content: '•';
+            position: absolute;
+            left: -20px;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+
+        .methodology-point strong {
+            color: var(--accent-green);
+        }
+
+        /* Conclusion */
+        .conclusion {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .conclusion h2 {
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .conclusion p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 40px;
+        }
+
+        /* Animation delays for cards */
+        .section-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .section-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .section-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .section-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .section-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .section-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .section-card:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .section-card:nth-child(8) {
+            animation-delay: 0.8s;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(13, 17, 23, 0.98);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+                border-bottom: 1px solid var(--glass-border);
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.show {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                padding: 0.75rem 1.25rem;
+                display: block;
+            }
+
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                border: none;
+                padding-left: 1rem;
+                background: transparent;
+            }
+
+            .section-container {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title {
+                font-size: 2.2rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .section-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">MHB</div>
+            <button id="navToggle" class="nav-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul id="mainNav" class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="about.html">About <i class="fa-solid fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="core_competencies.html">Core Competencies</a></li>
+                        <li><a href="star_swot.html">STAR & SWOT</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="operations.html">Operations <i class="fa-solid fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="stm.html">STM</a></li>
+                        <li><a href="cds_fdc.html">CDS - FDC</a></li>
+                        <li><a href="driver_roster.html">Driver Roster</a></li>
+                        <li><a href="driver_dashboard.html">Driver Dashboard</a></li>
+                    </ul>
+                </li>
+                <li><a href="presentation.html">Presentations</a></li>
+
+                <li><a href="safety.html">Safety</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back to Home
+        </a>
+
+        <header class="page-header">
+            <h1 class="page-title">Transport Coordination & Customer Service</h1>
+            <p class="page-subtitle">Senior Customer Service Assistant & Transport Coordinator</p>
+            <p class="page-name">Mohamed Hameed Buhari</p>
+            <p class="page-intro">Extensive experience in Transport Operations, Fleet Management, and Customer Service
+            </p>
+        </header>
+
+        <div class="section-container">
+            <div class="section-card">
+                <div class="section-title">Introduction</div>
+                <div class="section-content">
+                    <p>Proficient in handling complex coordination tasks with external service providers and
+                        stakeholders</p>
+                    <p>Skilled in ensuring compliance with SOP, SLA, SOW, BCP, and safety policies</p>
+                    <p>Expert in route planning, incident management, and emergency contingency planning</p>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-title">Transport Coordinator - Overview</div>
+                <div class="section-content">
+                    <p><span class="highlight">Emirates Airlines (2015-2022)</span></p>
+                    <p>Coordinated transport operations adhering to SOP, SLA, SOW, BCP, and safety policies</p>
+                    <p>Conducted audits on buses and drivers, ensuring compliance and safety standards</p>
+                    <p>Managed route planning, incident management, and emergency contingency planning</p>
+
+                    <div class="question">"How did I ensure smooth transport operations under challenging conditions?"
+                    </div>
+                    <div class="answer">
+                        Focused on proactive planning, monitoring localities, and maintaining communication channels.
+                        Handled detours and traffic disruptions efficiently through real-time monitoring and alternative
+                        route planning.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-title">Flight Deck Crew (FDC) Coordination</div>
+                <div class="section-content">
+                    <p>Managed crew transfers from airside to landside during layovers</p>
+                    <p>Monitored crew dispatch, preventing delays and ensuring readiness</p>
+                    <p>Coordinated Lost & Found items, reuniting crew and passengers with belongings</p>
+                    <p>Allocated cabs based on crew readiness and schedules</p>
+
+                    <div class="question">"What steps did you take to ensure accurate and timely crew transfers?"</div>
+                    <div class="answer">
+                        Implemented a systematic monitoring process for dispatches, verified schedules against
+                        operational requirements, and maintained direct communication channels with the Lost & Found
+                        department for immediate resolution of misplaced items.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-title">Chauffeur Drive Service (CDS)</div>
+                <div class="section-content">
+                    <p>Managed premium services for First Class, Business Class, and Economy passengers</p>
+                    <p>Coordinated customer pickups and drop-offs based on flight schedules</p>
+                    <p>Resolved customer inquiries and change requests swiftly</p>
+                    <p>Handled inbound calls from stakeholders across multiple countries</p>
+
+                    <div class="question">"How did I handle demanding customer situations?"</div>
+                    <div class="answer">
+                        Employed active listening techniques to fully understand customer concerns, demonstrated empathy
+                        to build rapport, and utilized structured problem-solving approaches to deliver satisfactory
+                        resolutions while maintaining brand standards.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-title">Staff Transport Management (STM)</div>
+                <div class="section-content">
+                    <p>Monitored inbound and outbound trips, planned routes, and handled detours</p>
+                    <p>Conducted bus and driver audits, ensuring safety compliance</p>
+                    <p>Handled inquiries, retention cases, and taxi claims</p>
+                    <p>Investigated customer feedback and collaborated with RTA</p>
+
+                    <div class="question">"How did I manage multiple responsibilities during peak hours?"</div>
+                    <div class="answer">
+                        Implemented a priority matrix system to categorize tasks by urgency and importance, streamlined
+                        communication workflows through standardized protocols, and leveraged team collaboration to
+                        ensure all operational requirements were met efficiently.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-title">Operational Tools & Technology</div>
+                <div class="section-content">
+                    <div class="tools-section">
+                        <h3>CDS/FDC Tools</h3>
+                        <div class="tools-grid">
+                            <div class="tool-item">
+                                <div class="tool-title">Echo Platform</div>
+                                <div class="tool-desc">Customer accounts, services, CRM</div>
+                            </div>
+                            <div class="tool-item">
+                                <div class="tool-title">iAuditor</div>
+                                <div class="tool-desc">Safety inspections</div>
+                            </div>
+                            <div class="tool-item">
+                                <div class="tool-title">SiD</div>
+                                <div class="tool-desc">System integration</div>
+                            </div>
+                            <div class="tool-item">
+                                <div class="tool-title">KPI monitoring</div>
+                                <div class="tool-desc">Performance dashboards</div>
+                            </div>
+                            <div class="tool-item">
+                                <div class="tool-title">FDC AUH SIM</div>
+                                <div class="tool-desc">Simulation tools</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tools-section">
+                        <h3>STM Tools</h3>
+                        <div class="tools-grid">
+                            <div class="tool-item">
+                                <div class="tool-title">Fleet Intrack</div>
+                                <div class="tool-desc">Live tracking</div>
+                            </div>
+                            <div class="tool-item">
+                                <div class="tool-title">Nimbus Wialon</div>
+                                <div class="tool-desc">Route tracking</div>
+                            </div>
+                            <div class="tool-item">
+                                <div class="tool-title">Zoho Analytics</div>
+                                <div class="tool-desc">Reporting</div>
+                            </div>
+                            <div class="tool-item">
+                                <div class="tool-title">Manual Verification</div>
+                                <div class="tool-desc">Quality control systems</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question">"How proficient are you in using transport management tools?"</div>
+                    <div class="answer">
+                        Highly skilled in utilizing Echo for customer service coordination, Fleet Intrack for real-time
+                        vehicle tracking, and analytical tools like Zoho Analytics for performance reporting.
+                        Consistently achieved high accuracy rates in system utilization and data entry.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-title">Operational Discussions & Meetings</div>
+                <div class="section-content">
+                    <p>Regular HQ visits to discuss operations with specialists</p>
+                    <p>Monitored routes for disruptions, ensured quick rerouting</p>
+                    <p>Updated SharePoint reports for audits</p>
+                    <p>Prepared minutes of meetings and action items</p>
+                    <p>Conducted monthly operational reviews</p>
+
+                    <div class="question">"How did I contribute to operational improvements?"</div>
+                    <div class="answer">
+                        Spearheaded initiatives to optimize route planning algorithms, enhanced reporting accuracy
+                        through automated data validation processes, and fostered cross-departmental collaboration that
+                        reduced response times by 25% for operational disruptions.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <div class="section-title">Operational Methodology</div>
+                <div class="section-content">
+                    <div class="methodology-item">
+                        <div class="methodology-title">Chauffeur Drive Service (CDS)</div>
+                        <div class="methodology-point"><strong>When:</strong> During customer pick-ups and drop-offs
+                            based on passenger tier classification (First Class, Business Class, Economy)</div>
+                        <div class="methodology-point"><strong>What:</strong> Managed intricate transportation
+                            processes, including handling flight schedule adjustments and change requests due to delays
+                            or disruptions</div>
+                        <div class="methodology-point"><strong>How:</strong> Coordinated with stakeholders across
+                            countries and addressed customer queries and change requests efficiently, providing a
+                            seamless experience</div>
+                    </div>
+
+                    <div class="methodology-item">
+                        <div class="methodology-title">Flight Deck Crew (FDC) Coordination</div>
+                        <div class="methodology-point"><strong>When:</strong> At Front Arrivals Desk, during crew
+                            dispatch and layovers</div>
+                        <div class="methodology-point"><strong>What:</strong> Efficiently coordinated pilot and cabin
+                            crew transfers, managing dispatch from layby to designated parking bays and
+                            airside-to-landside transfers</div>
+                        <div class="methodology-point"><strong>How:</strong> Maintained precise communication with the
+                            Lost & Found department for the accurate and swift delivery of misplaced items</div>
+                    </div>
+
+                    <div class="methodology-item">
+                        <div class="methodology-title">Staff Transport Management (STM)</div>
+                        <div class="methodology-point"><strong>When:</strong> Throughout inbound and outbound trips, on
+                            an hourly basis</div>
+                        <div class="methodology-point"><strong>What:</strong> Monitored all trips, ensured staff boarded
+                            the correct buses, and conducted safety and quality audits</div>
+                        <div class="methodology-point"><strong>How:</strong> Responded to walk-in staff queries, managed
+                            retention and taxi claims cases, and coordinated with RTA for feedback resolution</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h2>Conclusion</h2>
+            <p>Proven track record in Transport Coordination, Fleet Management, and Customer Service with Emirates
+                Airlines</p>
+            <p>Demonstrated expertise in operational planning, crisis management, and customer relationship management
+            </p>
+            <p>Proficient in utilizing advanced transport management systems and analytics tools</p>
+            <p>Committed to delivering seamless, safe, and efficient transport solutions</p>
+            <p>Ready to bring operational excellence and customer service expertise to your organization</p>
+        </div>
+
+        <footer>
+            <p>© <span id="yr"></span> Mohamed Hameed Buhari | All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Set current year
+        document.getElementById("yr").textContent = new Date().getFullYear();
+
+        // Mobile navigation toggle
+        const navToggle = document.getElementById("navToggle");
+        const nav = document.getElementById("mainNav");
+        navToggle.addEventListener("click", () => {
+            nav.classList.toggle("show");
+        });
+
+        // Toggle section content when clicking on section title
+        const sectionTitles = document.querySelectorAll('.section-title');
+        sectionTitles.forEach(title => {
+            title.addEventListener('click', function () {
+                const card = this.parentElement;
+                card.classList.toggle('active');
+            });
+        });
+
+        // Animate cards on scroll
+        const cards = document.querySelectorAll('.section-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+
+</html>
